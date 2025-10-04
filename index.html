@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Watch Ad | BDTEarnBot</title>
+  <!-- Monetag Script -->
+  <script src='//libtl.com/sdk.js' data-zone='9973603' data-sdk='show_9973603'></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      background: #0d1117;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    h2 { color: #00c8ff; }
+    #timer { font-size: 2em; margin-top: 10px; }
+    button {
+      margin-top: 20px;
+      background-color: #00c8ff;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h2>⏳ Please watch this ad for 15 seconds...</h2>
+  <div id="timer">15</div>
+  <button id="done" disabled>✅ Done</button>
+
+  <script>
+    let seconds = 15;
+    const timer = document.getElementById("timer");
+    const done = document.getElementById("done");
+
+    const countdown = setInterval(() => {
+      seconds--;
+      timer.innerText = seconds;
+      if (seconds <= 0) {
+        clearInterval(countdown);
+        done.disabled = false;
+        done.innerText = "✅ Done! Click to confirm";
+      }
+    }, 1000);
+
+    done.addEventListener("click", () => {
+      // Redirect back to Telegram bot
+      window.location.href = "https://t.me/YOUR_BOT_USERNAME?start=ad_done";
+    });
+  </script>
+</body>
+</html>
